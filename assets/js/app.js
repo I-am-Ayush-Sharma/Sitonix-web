@@ -1,74 +1,69 @@
-    // AOS Animation
-      AOS.init();
-  
-
+// AOS Animation
+AOS.init();
 
 //navbar 
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu-2");
-  const openIcon = document.getElementById("menu-open-icon");
-  const closeIcon = document.getElementById("menu-close-icon");
+const menuToggle = document.getElementById("menu-toggle");
+const mobileMenu = document.getElementById("mobile-menu-2");
+const openIcon = document.getElementById("menu-open-icon");
+const closeIcon = document.getElementById("menu-close-icon");
 
-  
-  menuToggle.addEventListener("click", (e) => {
-    e.stopPropagation(); // prevent event bubbling
-    mobileMenu.classList.toggle("hidden");
-    openIcon.classList.toggle("hidden");
-    closeIcon.classList.toggle("hidden");
-  });
+menuToggle.addEventListener("click", (e) => {
+  e.stopPropagation(); // prevent event bubbling
+  mobileMenu.classList.toggle("hidden");
+  openIcon.classList.toggle("hidden");
+  closeIcon.classList.toggle("hidden");
+});
 
-  document.addEventListener("click", (e) => {
-    if (
-      !mobileMenu.classList.contains("hidden") &&
-      !mobileMenu.contains(e.target) &&
-      !menuToggle.contains(e.target)
-    ) {
-      mobileMenu.classList.add("hidden");
-      openIcon.classList.remove("hidden");
-      closeIcon.classList.add("hidden");
-    }
-  });
+document.addEventListener("click", (e) => {
+  if (
+    !mobileMenu.classList.contains("hidden") &&
+    !mobileMenu.contains(e.target) &&
+    !menuToggle.contains(e.target)
+  ) {
+    mobileMenu.classList.add("hidden");
+    openIcon.classList.remove("hidden");
+    closeIcon.classList.add("hidden");
+  }
+});
 
-
-  
 // testimonials slider
 
-    const cardsData = [
-      {
-        image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200',
-        name: 'Briar Martin',
-        handle: '@neilstellar',
-        date: 'April 20, 2025',
-        data:'nice Work! I am very satisfied.'
-      },
-      {
-        image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200',
-        name: 'Avery Johnson',
-        handle: '@averywrites',
-        date: 'May 10, 2025',
-        data:'nice Work! I am very satisfied.'
-      },
-      {
-        image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60',
-        name: 'Jordan Lee',
-        handle: '@jordantalks',
-        date: 'June 5, 2025',
-        data:'Excellent service and support throughout the process.'
-      },
-      {
-        image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60',
-        name: 'Avery Johnson',
-        handle: '@averywrites',
-        date: 'May 10, 2025',
-        data:'nice Work! I am very satisfied.'
-      },
-    ];
+const cardsData = [
+  {
+    image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200',
+    name: 'Briar Martin',
+    handle: '@neilstellar',
+    date: 'April 20, 2025',
+    data: 'nice Work! I am very satisfied.'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200',
+    name: 'Avery Johnson',
+    handle: '@averywrites',
+    date: 'May 10, 2025',
+    data: 'nice Work! I am very satisfied.'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60',
+    name: 'Jordan Lee',
+    handle: '@jordantalks',
+    date: 'June 5, 2025',
+    data: 'Excellent service and support throughout the process.'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60',
+    name: 'Avery Johnson',
+    handle: '@averywrites',
+    date: 'May 10, 2025',
+    data: 'nice Work! I am very satisfied.'
+  },
+];
 
-    const row1 = document.getElementById('row1');
-    const row2 = document.getElementById('row2');
+const row1 = document.getElementById('row1');
+const row2 = document.getElementById('row2');
 
-    const createCard = (card) => `
+const createCard = (card) => `
       <div class="p-5 rounded-2xl mx-4 shadow-lg hover:shadow-blue-500/30 bg-[#1e293b] transition-all duration-300 w-72 shrink-0">
         <div class="flex gap-3 items-center">
           <img class="w-12 h-12 rounded-full border-2 border-blue-400" src="${card.image}" alt="User Image">
@@ -86,13 +81,13 @@
       </div>
     `;
 
-    const renderCards = (target) => {
-      const doubled = [...cardsData, ...cardsData];
-      doubled.forEach(card => target.insertAdjacentHTML('beforeend', createCard(card)));
-    };
+const renderCards = (target) => {
+  const doubled = [...cardsData, ...cardsData];
+  doubled.forEach(card => target.insertAdjacentHTML('beforeend', createCard(card)));
+};
 
-    renderCards(row1);
-    renderCards(row2);
+renderCards(row1);
+renderCards(row2);
 
 // ======= Form submission configuration =======
 
@@ -106,10 +101,10 @@ const toast = {
 
   show(message, type = 'success') {
     if (this.timeoutId) clearTimeout(this.timeoutId);
-    
+
     this.messageEl.textContent = message;
     this.element.className = `fixed bottom-4 right-4 flex items-center p-4 space-x-4 text-sm rounded-lg opacity-0 transition-all duration-300 translate-y-2 pointer-events-none z-50 ${type}`;
-    
+
     // Force reflow to enable animation
     this.element.offsetHeight;
     this.element.classList.add('show');
@@ -121,7 +116,7 @@ const toast = {
 };
 
 // contact modal behavior
-(function(){
+(function () {
   const openBtns = document.querySelectorAll('.open-contact-modal');
   const modal = document.getElementById('contact-modal');
   const overlay = document.getElementById('contact-modal-overlay');
@@ -147,13 +142,13 @@ const toast = {
     modal.classList.remove('flex');
   };
 
-  openBtns.forEach(b => b.addEventListener('click', (e)=>{ e.preventDefault(); show(); }));
+  openBtns.forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); show(); }));
 
   if (overlay) overlay.addEventListener('click', hide);
   if (closeBtn) closeBtn.addEventListener('click', hide);
   if (cancelBtn) cancelBtn.addEventListener('click', hide);
 
-  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && !modal.classList.contains('hidden')) hide(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) hide(); });
 
   const submitToEndpoint = async (frm) => {
     if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes('yourFormId')) {
@@ -189,7 +184,7 @@ const toast = {
         return true;
       }
       // attempt to parse error
-      const err = await res.json().catch(()=>null);
+      const err = await res.json().catch(() => null);
       console.error('Submit error', err);
       return false;
     } catch (err) {
@@ -199,7 +194,7 @@ const toast = {
   };
 
   if (form) {
-    form.addEventListener('submit', async (e)=>{
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const ok = await submitToEndpoint(e.target);
       if (ok) {
@@ -213,7 +208,7 @@ const toast = {
   // Also wire the contact section form (page form) to the same endpoint
   const pageForm = document.getElementById('contact-section-form');
   if (pageForm) {
-    pageForm.addEventListener('submit', async (e)=>{
+    pageForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const ok = await submitToEndpoint(e.target);
       if (ok) {
@@ -225,4 +220,39 @@ const toast = {
     });
   }
 })();
-  
+
+function updateImage() {
+  const img = document.getElementById("responsive-img");
+  if (window.innerWidth < 600) {
+    img.src = "assets/images/heropic2.png";
+  } else {
+    img.src = "assets/images/heropic.png";
+  }
+}
+
+// Run once on load
+updateImage();
+
+// Run every time the screen resizes
+window.addEventListener("resize", updateImage);
+
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+
+  question.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+
+    // Close all items
+    faqItems.forEach(i => i.classList.remove('active'));
+
+    // Open clicked item if it wasn't active
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  });
+});
+
+// Optional: Open first item by default
+faqItems[0].classList.add('active');
